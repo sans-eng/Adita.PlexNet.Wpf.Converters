@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -37,7 +35,7 @@ namespace Adita.PlexNet.Wpf.Converters
         /// <summary>
         /// Gets a <see langword="false"/> value of current <see cref="BooleanToValueConverter{T}"/>.
         /// </summary>
-        public T FalseValue { get;}
+        public T FalseValue { get; }
         #endregion Public properties
 
         #region Public methods
@@ -48,7 +46,15 @@ namespace Adita.PlexNet.Wpf.Converters
         /// <param name="parameter">The converter parameter to use.</param>
         /// <param name="culture">The culture to use in the converter.</param>
         /// <returns><see cref="TrueValue"/> if specified <paramref name="value"/> is  <see langword="true"/>, otherwise <see cref="FalseValue"/>.</returns>
-        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is not bool boolValue ? DependencyProperty.UnsetValue : boolValue;
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if(!bool.TryParse(value.ToString(), out bool boolValue))
+            {
+                return DependencyProperty.UnsetValue;
+            }
+
+            return boolValue ? TrueValue : FalseValue;
+        }
 
         /// <summary>Returns <see langword="true"/> if specified <paramref name="value"/> is <see cref="TrueValue"/>, otherwise <see langword="false"/>.</summary>
         /// <param name="value">The value that is produced by the binding target.</param>
@@ -56,7 +62,30 @@ namespace Adita.PlexNet.Wpf.Converters
         /// <param name="parameter">The converter parameter to use.</param>
         /// <param name="culture">The culture to use in the converter.</param>
         /// <returns><see langword="true"/> if specified <paramref name="value"/> is <see cref="TrueValue"/>, otherwise <see langword="false"/>.</returns>
-        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value is not T tValue ? DependencyProperty.UnsetValue : EqualityComparer<T>.Default.Equals(tValue, TrueValue);
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                var converter = TypeDescriptor.GetConverter(typeof(T));
+                if (converter != null)
+                {
+                    // Cast ConvertFromString(string text) : object to (T)
+                    T? tValue = (T?)converter.ConvertFromString(value.ToString()!);
+
+                    if(tValue == null)
+                    {
+                        return DependencyProperty.UnsetValue;
+                    }
+
+                    return EqualityComparer<T>.Default.Equals(tValue, TrueValue);
+                }
+                return DependencyProperty.UnsetValue;
+            }
+            catch (Exception)
+            {
+                return DependencyProperty.UnsetValue;
+            }
+        }
 
         /// <summary>Returns current converter instance.</summary>
         /// <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
@@ -66,5 +95,9 @@ namespace Adita.PlexNet.Wpf.Converters
             return this;
         }
         #endregion Public methods
+
+        #region Private methods
+
+        #endregion Private methods
     }
 }
