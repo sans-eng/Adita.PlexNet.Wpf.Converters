@@ -1,0 +1,42 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Adita.PlexNet.Wpf.Converters">
+
+    <!--Arithmetic-->
+    <local:ArithmeticConverter x:Key="MultiplicationConverter" Operation="Multiplication"/>
+    <local:ArithmeticConverter x:Key="DivisionConverter" Operation="Division"/>
+    <local:ArithmeticConverter x:Key="AdditionConverter" Operation="Addition"/>
+    <local:ArithmeticConverter x:Key="SubtractionConverter" Operation="Subtraction"/>
+    
+    <!--Arithmetic multi-->
+    <local:ArithmeticMultiConverter x:Key="MultiplicationMultiConverter" Operation="Multiplication"/>
+    <local:ArithmeticMultiConverter x:Key="DivisionMultiConverter" Operation="Division"/>
+    <local:ArithmeticMultiConverter x:Key="AdditionMultiConverter" Operation="Addition"/>
+    <local:ArithmeticMultiConverter x:Key="SubtractionMultiConverter" Operation="Subtraction"/>
+
+    <local:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    
+    <!--Comparison-->
+    <local:ComparisonConverter x:Key="LessThanConverter" Operation="LessThan"/>
+    <local:ComparisonConverter x:Key="LessThanOrEqualConverter" Operation="LessThanOrEqual"/>
+    <local:ComparisonConverter x:Key="GreaterThanConverter" Operation="GreaterThan"/>
+    <local:ComparisonConverter x:Key="GreaterThanOrEqualConverter" Operation="GreaterThanOrEqual"/>
+    <local:ComparisonConverter x:Key="EqualConverter" Operation="Equal"/>
+    <local:ComparisonConverter x:Key="InequalConverter" Operation="Inequal"/>
+    
+    <!--Logical-->
+    <local:LogicalMultiConverter x:Key="LogicalAndMultiConverter" Operation="And"/>
+    <local:LogicalMultiConverter x:Key="LogicalOrMultiConverter" Operation="Or"/>
+    <local:LogicalMultiConverter x:Key="LogicalExOrMultiConverter" Operation="ExclusiveOr"/>
+    
+    <!--string-->
+    <local:StringConcatenateMultiConverter x:Key="StringConcatenateMultiConverter"/>
+    <local:StringWhiteSpaceRemoverConverter x:Key="StringWhiteSpaceRemoverConverter"/>
+    <local:StringIsNullOrEmptyConverter x:Key="StringIsNullOrEmptyConverter"/>
+    <local:StringIsNullOrWhiteSpaceConverter x:Key="StringIsNullOrWhiteSpaceConverter"/>
+    
+    <!--Type-->
+    <local:TypeEqualityConverter x:Key="TypeEqualityConverter"/>
+    <local:ValueToTypeConverter x:Key="ValueToTypeConverter"/>
+
+</ResourceDictionary>
