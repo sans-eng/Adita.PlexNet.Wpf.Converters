@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
 
@@ -47,7 +48,7 @@ namespace Adita.PlexNet.Wpf.Converters
         /// <param name="parameter">The converter parameter to use.</param>
         /// <param name="culture">The culture to use in the converter.</param>
         /// <returns><see cref="TrueValue"/> if specified <paramref name="value"/> is  <see langword="true"/>, otherwise <see cref="FalseValue"/>.</returns>
-        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is bool boolValue && boolValue ? TrueValue : FalseValue;
+        public object? Convert(object value, Type targetType, object parameter, CultureInfo culture) => value is not bool boolValue ? DependencyProperty.UnsetValue : boolValue;
 
         /// <summary>Returns <see langword="true"/> if specified <paramref name="value"/> is <see cref="TrueValue"/>, otherwise <see langword="false"/>.</summary>
         /// <param name="value">The value that is produced by the binding target.</param>
@@ -55,7 +56,7 @@ namespace Adita.PlexNet.Wpf.Converters
         /// <param name="parameter">The converter parameter to use.</param>
         /// <param name="culture">The culture to use in the converter.</param>
         /// <returns><see langword="true"/> if specified <paramref name="value"/> is <see cref="TrueValue"/>, otherwise <see langword="false"/>.</returns>
-        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value is T tValue && EqualityComparer<T>.Default.Equals(tValue, TrueValue);
+        public object? ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) => value is not T tValue ? DependencyProperty.UnsetValue : EqualityComparer<T>.Default.Equals(tValue, TrueValue);
 
         /// <summary>Returns current converter instance.</summary>
         /// <param name="serviceProvider">A service provider helper that can provide services for the markup extension.</param>
