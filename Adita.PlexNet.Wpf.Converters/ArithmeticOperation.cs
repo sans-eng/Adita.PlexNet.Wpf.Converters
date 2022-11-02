@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Adita.PlexNet.Wpf.Converters
+﻿namespace Adita.PlexNet.Wpf.Converters
 {
     /// <summary>
     /// Determines the arithmetic operation for arithmetic converters.

@@ -10,7 +10,7 @@
     <Authors>Setya Adi Kurnia</Authors>
     <Company>Adita</Company>
     <Description>A WPF converters for PlexNet framework that targeting .NET 6</Description>
-    <Copyright>©2022 Adita</Copyright>
+    <Copyright>© 2022 Adita</Copyright>
     <PackageProjectUrl>https://plexdotnet.adita-engineering.com</PackageProjectUrl>
     <PackageIcon>favicon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>

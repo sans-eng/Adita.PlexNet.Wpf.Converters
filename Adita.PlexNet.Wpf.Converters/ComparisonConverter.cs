@@ -41,9 +41,9 @@ namespace Adita.PlexNet.Wpf.Converters
             return Operation switch
             {
                 ComparisonOperation.LessThan => value1 < value2,
-                ComparisonOperation.GreaterThan => value2 > value1,
+                ComparisonOperation.GreaterThan => value1 > value2,
                 ComparisonOperation.LessThanOrEqual => value1 <= value2,
-                ComparisonOperation.GreaterThanOrEqual => value2 >= value1,
+                ComparisonOperation.GreaterThanOrEqual => value1 >= value2,
                 ComparisonOperation.Equal => value1 == value2,
                 ComparisonOperation.Inequal => value1 != value2,
                 _ => DependencyProperty.UnsetValue

@@ -68,7 +68,7 @@ namespace Adita.PlexNet.Wpf.Converters
                 catch (ArithmeticException)
                 {
                     return DependencyProperty.UnsetValue;
-                }             
+                }
             }
 
             return result;

@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Markup;
@@ -36,7 +34,7 @@ namespace Adita.PlexNet.Wpf.Converters
 
             foreach (var value in values)
             {
-                if(bool.TryParse(value.ToString(), out bool result))
+                if (bool.TryParse(value.ToString(), out bool result))
                 {
                     bools.Add(result);
                 }
